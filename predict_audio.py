@@ -1,13 +1,13 @@
 import pyaudio
 import wave
 import numpy as np
-from tensorflow.keras.models import load_model
+import tensorflow as tf
 from clean import downsample_mono, envelope
 from kapre.time_frequency import STFT, Magnitude, ApplyFilterbank, MagnitudeToDecibel
 import argparse
 import os
 
-def record_audio(filename, duration=0.5, sr=16000):
+def record_audio(filename, duration=5, sr=16000):
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
@@ -69,7 +69,7 @@ def predict_audio_def(path_save_audio):
     parser.add_argument("--model_fn", type=str, default="models/lstm.h5", help="Path to the model file")
     args = parser.parse_args()
 
-    model = load_model(args.model_fn,
+    model = tf.keras.models.load_model(args.model_fn,
         custom_objects={'STFT':STFT,
                         'Magnitude':Magnitude,
                         'ApplyFilterbank':ApplyFilterbank,
@@ -83,4 +83,13 @@ def predict_audio_def(path_save_audio):
     # Make prediction
     prediction = load_and_predict(path_save_audio, model)
 
-    print("Predicted class:", prediction)
+    if prediction == 0:
+        print("Predicted class: Glass_0")
+    elif prediction == 1:
+        print("Predicted class: HDPE_1")
+    elif prediction == 2:
+        print("Predicted class: METAL_2")
+    elif prediction == 3:
+        print("Predicted class: PET_3")
+    else:
+        print("ERROR.")

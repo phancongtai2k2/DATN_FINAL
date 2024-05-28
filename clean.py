@@ -5,9 +5,10 @@ import os
 from glob import glob
 import numpy as np
 import pandas as pd
-from librosa.core import resample, to_mono
+from librosa.core.audio import resample, to_mono
 from tqdm import tqdm
 import wavio
+
 
 
 def envelope(y, rate, threshold):
@@ -39,7 +40,7 @@ def downsample_mono(path, sr):
         pass
     except Exception as exc:
         raise exc
-    wav = resample(wav, rate, sr)
+    wav = resample(wav,orig_sr= rate, target_sr = sr)
     wav = wav.astype(np.int16)
     return sr, wav
 

@@ -1,8 +1,9 @@
 from ultralytics import YOLO
 import random
 from detect_by_Yolo import detect_yolov8
+
 #sensorHCSR
-#from gpiozero import DistanceSensor
+from gpiozero import DistanceSensor
 from time import sleep
 
 #initRecord 
@@ -14,15 +15,15 @@ from predict_audio import predict_audio_def
 import argparse
 
 #initGPIO_HCSR
-#sensor = DistanceSensor(echo = 23, trigger = 24)
+sensor = DistanceSensor(echo = 23, trigger = 24)
 
 #init modelYOLO
-model = YOLO("models\last.pt")
+model = YOLO(r"/home/pi/DATN_FINAL/models/last.pt")
 
 #read_hcsr
-# def read_hcsr():
-#     s = sensor.distance 
-#     return s
+def read_hcsr():
+    s = sensor.distance 
+    return s
 
 if __name__ == "__main__":
     while(1):
@@ -45,7 +46,7 @@ if __name__ == "__main__":
 
             #predict_audio
             predict_audio_def(output_file_path)
-        
+            print('Xong tien trinh')
         sleep(10)
         
             
