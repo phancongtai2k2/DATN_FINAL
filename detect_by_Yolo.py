@@ -44,10 +44,9 @@ def detect_yolov8():
             class_name=model.names[int(c)]
 
     print("Gia tri tra ve: ",class_name, " voi id:",class_number)
+    
+    cv2.destroyAllWindows()
 
-
-detect_yolov8()
-sleep(5)
     
 
 

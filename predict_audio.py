@@ -7,7 +7,7 @@ from kapre.time_frequency import STFT, Magnitude, ApplyFilterbank, MagnitudeToDe
 import argparse
 import os
 
-def record_audio(filename, duration=0.5, sr=16000):
+def record_audio(output_filename, duration=5, sr=16000):
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
@@ -36,7 +36,7 @@ def record_audio(filename, duration=0.5, sr=16000):
     stream.close()
     p.terminate()
 
-    wf = wave.open(filename, 'wb')
+    wf = wave.open(output_filename, 'wb')
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(p.get_sample_size(FORMAT))
     wf.setframerate(RATE)
@@ -83,4 +83,15 @@ def predict_audio_def(path_save_audio):
     # Make prediction
     prediction = load_and_predict(path_save_audio, model)
 
-    print("Predicted class:", prediction)
+    if prediction == 0:
+        print("Predicted class: Glass_0")
+    elif prediction == 1:
+        print("Predicted class: HDPE_1")
+    elif prediction == 2:
+        print("Predicted class: METAL_2")
+    elif prediction == 3:
+        print("Predicted class: PET_3")
+    else:
+        print("ERROR")
+    
+    return prediction
