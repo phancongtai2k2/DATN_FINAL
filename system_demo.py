@@ -1,63 +1,55 @@
 from ultralytics import YOLO
 import random
 from detect_by_Yolo import detect_yolov8
-
 #sensorHCSR
-from gpiozero import DistanceSensor
+from gpiozero import DistanceSensor, AngularServo
 from time import sleep
 
 #initRecord 
-from record import record_audio
 from cut_audio import cut_Audio
 
 #Audio
-from predict_audio import predict_audio_def
+from predict_audio import predict_audio_def, record_audio
 import argparse
 
-#initGPIO_HCSR
+from action import activate_DC
+
+# initGPIO_HCSR , chan vat ly 16 va 18
 sensor = DistanceSensor(echo = 23, trigger = 24)
 
+#init servo GPIO 17, chan vat ly 11
+servo_door = AngularServo(17, min_pulse_width=0.0006, max_pulse_width=0.0023)
+
+#init servo GPIO 18, chan vat ly 12
+servo_knock = AngularServo(18, min_pulse_width=0.0006, max_pulse_width=0.0023)
+
 #init modelYOLO
-model = YOLO(r"/home/pi/DATN_FINAL/models/last.pt")
+model = YOLO("models\last.pt")
 
 #read_hcsr
-def read_hcsr():
-    s = sensor.distance 
-    return s
+# def read_hcsr():
+#     s = sensor.distance 
+#     return s
 
 if __name__ == "__main__":
-    while(1):
-        #d = read_hcsr()
-        d = random.randint(0,20)
+    
+    while(True):
 
-        led = 0 #khoi tao gia tri led = 0 sau moi lan 
+        # print("Open Yolo vs Led\n")
+        # led = 1     # bat led 
+        # print("bat den led cung cap anh sang!\n")
+        # detect_yolov8()
 
-        if(d < 10):     #10 la khoang cach khong co vat
-            print("Open Yolo vs Led\n")
-            led = 1     # bat led 
-            print("bat den led cung cap anh sang!\n")
-            detect_yolov8()
-
-            print("Open Audio")
-            audio_path = "save_record_audio/audio_save.wav"
-            record_audio(audio_path, 5 )       #duong dan save file record, 5s
-            output_file_path = "save_record_audio_new/audio_save.wav"
-            cut_Audio(audio_path,output_file_path)               #cắt xong ghi đè lên file audio_save
-
-            #predict_audio
-            predict_audio_def(output_file_path)
-            print('Xong tien trinh')
-        sleep(10)
+        print("Open Audio")
+        audio_path = "save_record_audio/audio_save.wav"
+        record_audio(audio_path, 5)       #duong dan save file record, 5s
+        output_file_path = "save_record_audio_new/audio_save.wav"
+        cut_Audio(audio_path,output_file_path)               #cắt xong ghi đè lên file audio_save
         
+        #predict_audio
+        t = predict_audio_def(output_file_path)
+        
+        activate_DC(t , servo_door)
+
+        sleep(10)
             
-
-            
-
-
-            
-
-
-
-
-
-

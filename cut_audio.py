@@ -29,5 +29,6 @@ def cut_Audio(input_audio_path,output_file_path):
             st = (j/sample_rate)
             extracted_audio = extract_audio_segment(input_audio_path, st)
             extracted_audio.export(output_file_path, format= "wav")
+            break
         else:
             j = j + 1
