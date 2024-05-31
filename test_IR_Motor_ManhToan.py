@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+# Nhap ham control_servo tu file servo_test_1
+from servo.servo_test_1 import control_servo
 
 
 
@@ -72,6 +74,8 @@ def motor_control_with_ir(i):
                 print("Object detected.........., stopping motor")
                 rotate_motor(clockwise=True, speed=0)  # Dung dong co
                 time.sleep(4)  # Cho 4000 ms de dam bao dong co dung
+                
+                control_servo()
 
 
 

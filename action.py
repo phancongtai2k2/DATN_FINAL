@@ -2,11 +2,12 @@ from time import sleep
 from IR_Sensor.IR import IRSensor
 from gpiozero import AngularServo
 from DC.MotorControl import MotorControl
+import RPi.GPIO as GPIO
 
 
 def activate_DC(predict, servo_door):
     rotate_motor = MotorControl(in1 = 27 ,in2 = 22 ,ena = 14 )  # tuong ung chan vat ly 13 , 15 , 8
-
+    GPIO.setmode(GPIO.BCM)
     #glass
     if(predict == 0):
         read_ir_glass = IRSensor(pin = 5) # chan vat ly 29
@@ -93,5 +94,6 @@ def activate_DC(predict, servo_door):
                     break
             break
                 
-
+servo_door = AngularServo(17, min_pulse_width=0.0006, max_pulse_width=0.0023)
+activate_DC(predict=3,servo_door= servo_door )
         
