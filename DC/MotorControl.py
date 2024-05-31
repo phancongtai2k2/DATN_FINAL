@@ -10,7 +10,7 @@ class MotorControl(object):
         self.ENA = ena  # Chan GPIO dieu khien ENA (PWM)
 
         GPIO.setmode(GPIO.BCM)  # Thiet lap che do danh so chan GPIO theo chuan BCM
-        GPIO.setwarnings(False)  # Tat canh bao ve GPIO
+        # GPIO.setwarnings(False)  # Tat canh bao ve GPIO
 
         # Thiet lap cac chan GPIO la OUTPUT
         GPIO.setup(self.IN1, GPIO.OUT)
@@ -41,7 +41,7 @@ class MotorControl(object):
         self.PWM.ChangeDutyCycle(value)
 
 # try:
-#     motor = MotorControl(in1=13, in2=12, ena=6)  # Khoi tao doi tuong dieu khien dong co
+#     motor = MotorControl(in1=27, in2=22, ena=14)  # Khoi tao doi tuong dieu khien dong co
 
 #     while True:
 #         motor.forward()  # Quay thuan dong co

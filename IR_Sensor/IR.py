@@ -12,21 +12,19 @@ class IRSensor:
     def read_sensor(self):
         t = 0
         try: 
-            while True:
-                if GPIO.input(self.sensor):
-                    print("No Object Detected: 0")
-                    while GPIO.input(self.sensor):
-                        time.sleep(0.2)
-                else:  
-                    print("Object Detected: 1")
-                    t = 1
-                    break
+            if GPIO.input(self.sensor):
+                print("No Object Detected: 0")
+                time.sleep(0.2)
+            else:  
+                print("Object Detected: 1")
+                t = 1
 
         except KeyboardInterrupt:
             GPIO.cleanup()
-        GPIO.cleanup()
         return t
 
-# # Su dung class IRSensor
-# ir_sensor = IRSensor(pin=23)
+# Su dung class IRSensor
+# ir_sensor = IRSensor(pin=5)
 # t = ir_sensor.read_sensor()
+
+# print(t)
