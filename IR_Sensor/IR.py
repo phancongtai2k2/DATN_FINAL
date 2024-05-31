@@ -15,8 +15,7 @@ class IRSensor:
             while True:
                 if GPIO.input(self.sensor):
                     print("No Object Detected: 0")
-                    while GPIO.input(self.sensor):
-                        time.sleep(0.2)
+                    time.sleep(0.2)
                 else:  
                     print("Object Detected: 1")
                     t = 1
@@ -24,7 +23,6 @@ class IRSensor:
 
         except KeyboardInterrupt:
             GPIO.cleanup()
-        GPIO.cleanup()
         return t
 
 # # Sử dụng class IRSensor
