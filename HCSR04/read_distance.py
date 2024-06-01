@@ -1,40 +1,46 @@
-import RPi.GPIO as GPIO
-import time
+import RPi.GPIO as GPIO  # Thu vien dieu khien GPIO cua Raspberry Pi
+import time  # Thu vien xu ly thoi gian
 
-GPIO.setmode(GPIO.BCM)
+def measure_distance():
+    # Cau hinh GPIO
+    GPIO.setwarnings(False)  # Tat canh bao
+    GPIO.setmode(GPIO.BCM)  # Dat che do danh so GPIO theo chuan BCM
 
-TRIG = 23
-ECHO = 24
+    TRIG = 23  # Dat chan GPIO 23 cho TRIG
+    ECHO = 24  # Dat chan GPIO 24 cho ECHO
 
-print ("Distance Measurement In Progress")
+    print("Distance Measurement In Progress")  # In thong bao bat dau do khoang cach
 
-GPIO.setup(TRIG,GPIO.OUT)
-GPIO.setup(ECHO,GPIO.IN)
-def distance():
-    while True:
-        
-        GPIO.output(TRIG, False)
-        print ("Waiting For Sensor To Settle")
-        time.sleep(2)
-        
-        GPIO.output(TRIG, True)
-        time.sleep(0.00001)
-        GPIO.output(TRIG, False)
-        
-        while GPIO.input(ECHO)==0:
-            pulse_start = time.time()
-        
-        while GPIO.input(ECHO)==1:
-            pulse_end = time.time()
-        
-        pulse_duration = pulse_end - pulse_start
-        
-        distance = pulse_duration * 17150
-        
-        distance = round(distance, 2)
-        
-        return distance
-        
-# except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program
-#     print("Cleaning up!")
-#     GPIO.cleanup()
+    GPIO.setup(TRIG, GPIO.OUT)  # Dat chan TRIG lam dau ra
+    GPIO.setup(ECHO, GPIO.IN)  # Dat chan ECHO lam dau vao
+
+    try:
+        while True:  # Vong lap vo han de do lien tuc
+            GPIO.output(TRIG, False)  # Dam bao chan TRIG dang o muc thap
+            print("Waiting For Sensor To Settle")  # In thong bao cho cam bien on dinh
+            time.sleep(2)  # Cho 2 giay cho cam bien on dinh
+
+            GPIO.output(TRIG, True)  # Dat chan TRIG len muc cao
+            time.sleep(0.00001)  # Giu chan TRIG o muc cao trong 10 micro giay
+            GPIO.output(TRIG, False)  # Dat chan TRIG tro lai muc thap
+
+            while GPIO.input(ECHO) == 0:  # Cho ECHO len muc cao
+                pulse_start = time.time()  # Ghi lai thoi diem bat dau xung
+
+            while GPIO.input(ECHO) == 1:  # Cho ECHO xuong muc thap
+                pulse_end = time.time()  # Ghi lai thoi diem ket thuc xung
+
+            pulse_duration = pulse_end - pulse_start  # Tinh toan do dai xung
+
+            distance = pulse_duration * 17150  # Tinh toan khoang cach dua tren do dai xung
+            distance = round(distance, 2)  # Lam tron khoang cach den 2 chu so thap phan
+
+            print("Distance:", distance, "cm")  # In khoang cach do duoc
+            time.sleep(1)  # Cho 1 giay truoc khi do lai
+
+    except KeyboardInterrupt:  # Xu ly khi nguoi dung nhan Ctrl+C de dung chuong trinh
+        print("Measurement stopped by User")  # In thong bao dung do
+        GPIO.cleanup()  # Don dep cac chan GPIO
+
+# Goi ham do khoang cach
+measure_distance()
