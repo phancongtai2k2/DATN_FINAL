@@ -15,21 +15,18 @@ def activate_DC(predict):
         
         #glass
         if(predict == 0):
+            read_ir_glass = IRSensor(pin = 5) 
             
-            # read_ir_glass = IRSensor(pin = 5) # chan vat ly 29
-            print("0 ")    
-
             while(True):
                 rotate_motor.backward() # nguoc chieu kim dong ho
-                rotate_motor.setSpeed(60)   # dieu chinh toc do dong co
-                read_ir_glass = IRSensor(pin = 5) 
+                rotate_motor.setSpeed(60)   # dieu chinh toc do dong c
                 rg = read_ir_glass.read_sensor()
                 if(rg == 1):
                     rotate_motor.stop()
                     break
 
             servo_door.min()   #Thay doi phu hop voi cach dat servo
-            sleep(1)
+            sleep(3)
             servo_door.mid()
             
             read_ir_pet = IRSensor(pin = 26) # chan vat ly 37
@@ -53,7 +50,7 @@ def activate_DC(predict):
                     rotate_motor.stop()
                     break
             servo_door.min()   #Thay doi phu hop voi cach dat servo
-            sleep(1)
+            sleep(3)
             servo_door.mid()
 
             read_ir_pet = IRSensor(pin = 26) # chan vat ly 37
@@ -77,7 +74,7 @@ def activate_DC(predict):
                     rotate_motor.stop()
                     break
             servo_door.min()   #Thay doi phu hop voi cach dat servo
-            sleep(1)
+            sleep(3)
             servo_door.mid()
 
             read_ir_pet = IRSensor(pin = 26) # chan vat ly 37
@@ -97,7 +94,7 @@ def activate_DC(predict):
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
                     servo_door.min()   #Thay doi phu hop voi cach dat servo
-                    sleep(1)
+                    sleep(3)
                     servo_door.mid() 
                 else:
                     while(True):
@@ -111,4 +108,3 @@ def activate_DC(predict):
     finally:
         GPIO.cleanup()            
 
-activate_DC( predict=0 )

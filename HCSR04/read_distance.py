@@ -36,11 +36,20 @@ def measure_distance():
             distance = round(distance, 2)  # Lam tron khoang cach den 2 chu so thap phan
 
             print("Distance:", distance, "cm")  # In khoang cach do duoc
+
+            if distance < 10:  # Kiem tra neu khoang cach duoi 10 cm
+                print("Distance is below 10 cm, stopping measurement")  # In thong bao va thoat khoi vong lap
+                break
+            
             time.sleep(1)  # Cho 1 giay truoc khi do lai
 
     except KeyboardInterrupt:  # Xu ly khi nguoi dung nhan Ctrl+C de dung chuong trinh
         print("Measurement stopped by User")  # In thong bao dung do
+    finally:
         GPIO.cleanup()  # Don dep cac chan GPIO
 
+def another_function():
+    print("Executing another function")  # Thay the bang code thuc te cua ban
+
 # Goi ham do khoang cach
-measure_distance()
+# measure_distance()
