@@ -18,7 +18,7 @@ def measure_distance():
         while True:  # Vong lap vo han de do lien tuc
             GPIO.output(TRIG, False)  # Dam bao chan TRIG dang o muc thap
             print("Waiting For Sensor To Settle")  # In thong bao cho cam bien on dinh
-            time.sleep(2)  # Cho 2 giay cho cam bien on dinh
+            time.sleep(0.5)  # Cho 0.5 giay cho cam bien on dinh
 
             GPIO.output(TRIG, True)  # Dat chan TRIG len muc cao
             time.sleep(0.00001)  # Giu chan TRIG o muc cao trong 10 micro giay

@@ -19,7 +19,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.backward() # nguoc chieu kim dong ho
-                rotate_motor.setSpeed(60)   # dieu chinh toc do dong c
+                rotate_motor.setSpeed(90)   # dieu chinh toc do
                 rg = read_ir_glass.read_sensor()
                 if(rg == 1):
                     rotate_motor.stop()
@@ -64,11 +64,11 @@ def activate_DC(predict):
                     break
         #metal
         elif(predict == 2):
-            read_ir_metal = IRSensor(pin = 16) #chan vat ly 36
+            read_ir_metal = IRSensor(pin = 20) #chan vat ly 38
             
             while(True):
                 rotate_motor.forward() # thuan chieu kim dong ho
-                rotate_motor.setSpeed(60)
+                rotate_motor.setSpeed(90)
                 rm = read_ir_metal.read_sensor()
                 if(rm == 1):
                     rotate_motor.stop()
@@ -81,7 +81,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.backward() # nguoc chieu kim dong ho
-                rotate_motor.setSpeed(60)
+                rotate_motor.setSpeed(90)
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
                     rotate_motor.stop()
@@ -93,18 +93,22 @@ def activate_DC(predict):
             while(True): 
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
-                    servo_door.min()   #Thay doi phu hop voi cach dat servo
-                    sleep(3)
-                    servo_door.mid() 
-                else:
+                    break 
+                elif(rp == 0):
                     while(True):
                         rotate_motor.forward() # thuan chieu kim dong ho
                         rotate_motor.setSpeed(90)
                         rp = read_ir_pet.read_sensor()
                         if(rp == 1):
-                            rotate_motor.stop()
-                        break
-                break
+                            rotate_motor.stop() 
+                            break
+                    break
+
+            servo_door.min()   #Thay doi phu hop voi cach dat servo
+            sleep(3)
+            servo_door.mid()
+            sleep(3)
+                  
     finally:
         GPIO.cleanup()            
 

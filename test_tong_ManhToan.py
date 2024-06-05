@@ -3,5 +3,5 @@ from action import activate_DC
 
 measure_distance()
 
-activate_DC(1)
+activate_DC(3)
 

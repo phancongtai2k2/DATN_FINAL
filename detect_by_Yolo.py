@@ -3,7 +3,7 @@ import cv2
 from time import sleep
 import os
 from PIL import Image
-model = YOLO("models\last.pt")
+model = YOLO("models/last.pt")
 webcam = cv2.VideoCapture(0)
 
 def detect_yolov8():
@@ -46,3 +46,5 @@ def detect_yolov8():
     print("Gia tri tra ve: ",class_name, " voi id:",class_number)
     
     cv2.destroyAllWindows()
+
+detect_yolov8()
