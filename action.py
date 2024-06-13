@@ -19,7 +19,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.backward() # nguoc chieu kim dong ho
-                rotate_motor.setSpeed(90)   # dieu chinh toc do
+                rotate_motor.setSpeed(70)   # dieu chinh toc do
                 rg = read_ir_glass.read_sensor()
                 if(rg == 1):
                     rotate_motor.stop()
@@ -33,7 +33,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.forward() # thuan chieu kim dong ho
-                rotate_motor.setSpeed(60)
+                rotate_motor.setSpeed(70)
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
                     rotate_motor.stop()
@@ -44,7 +44,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.forward()  # thuan chieu kim dong ho
-                rotate_motor.setSpeed(90)
+                rotate_motor.setSpeed(70)
                 rh = read_ir_hdpe.read_sensor()
                 if(rh == 1):
                     rotate_motor.stop()
@@ -56,8 +56,8 @@ def activate_DC(predict):
             read_ir_pet = IRSensor(pin = 26) # chan vat ly 37
             
             while(True):
-                rotate_motor.forward() #thuan chieu kim dong ho
-                rotate_motor.setSpeed(90)
+                rotate_motor.backward() # nguoc chieu kim dong ho
+                rotate_motor.setSpeed(70)   # dieu chinh toc do
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
                     rotate_motor.stop()
@@ -68,7 +68,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.forward() # thuan chieu kim dong ho
-                rotate_motor.setSpeed(90)
+                rotate_motor.setSpeed(70)
                 rm = read_ir_metal.read_sensor()
                 if(rm == 1):
                     rotate_motor.stop()
@@ -81,7 +81,7 @@ def activate_DC(predict):
             
             while(True):
                 rotate_motor.backward() # nguoc chieu kim dong ho
-                rotate_motor.setSpeed(90)
+                rotate_motor.setSpeed(70)
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
                     rotate_motor.stop()
@@ -97,7 +97,7 @@ def activate_DC(predict):
                 elif(rp == 0):
                     while(True):
                         rotate_motor.forward() # thuan chieu kim dong ho
-                        rotate_motor.setSpeed(90)
+                        rotate_motor.setSpeed(70)
                         rp = read_ir_pet.read_sensor()
                         if(rp == 1):
                             rotate_motor.stop() 
