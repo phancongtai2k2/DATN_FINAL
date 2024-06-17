@@ -36,6 +36,7 @@ def detect_yolov8():
     print("Chuan bi detect")
     im1 = "save_image/saved_img.jpg"
     results = model.predict(source=im1, show=True)  # lưu hình ảnh
+    sleep(1)
     print("Ket thuc detect")
 
     for r in results:
@@ -46,5 +47,5 @@ def detect_yolov8():
     print("Gia tri tra ve: ",class_name, " voi id:",class_number)
     
     cv2.destroyAllWindows()
+    return class_number
 
-detect_yolov8()

@@ -6,8 +6,8 @@ def measure_distance():
     GPIO.setwarnings(False)  # Tat canh bao
     GPIO.setmode(GPIO.BCM)  # Dat che do danh so GPIO theo chuan BCM
 
-    TRIG = 23  # Dat chan GPIO 23 cho TRIG
-    ECHO = 24  # Dat chan GPIO 24 cho ECHO
+    TRIG = 7  # Dat chan GPIO 7 cho TRIG
+    ECHO = 1  # Dat chan GPIO 1 cho ECHO
 
     print("Distance Measurement In Progress")  # In thong bao bat dau do khoang cach
 
@@ -37,8 +37,8 @@ def measure_distance():
 
             print("Distance:", distance, "cm")  # In khoang cach do duoc
 
-            if distance < 10:  # Kiem tra neu khoang cach duoi 10 cm
-                print("Distance is below 10 cm, stopping measurement")  # In thong bao va thoat khoi vong lap
+            if distance < 15:  # Kiem tra neu khoang cach duoi 10 cm
+                print("Distance is below 15 cm, stopping measurement")  # In thong bao va thoat khoi vong lap
                 break
             
             time.sleep(1)  # Cho 1 giay truoc khi do lai
