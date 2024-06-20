@@ -4,13 +4,6 @@ import RPi.GPIO as GPIO
 import time
 
 
-
-# Ham cau hinh mot chan GPIO duy nhat
-def setup_pin(pin):
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)  # Dat trang thai khoi tao la LOW
-
 # Ham bat chan GPIO
 def turn_on(pin):
     GPIO.setmode(GPIO.BCM)
