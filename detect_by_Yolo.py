@@ -49,3 +49,4 @@ def detect_yolov8():
     cv2.destroyAllWindows()
     return class_number
 
+detect_yolov8()

@@ -26,7 +26,7 @@ def activate_DC(predict):
                     break
             print('Open door')
             sleep(1)
-            servo_door.min()   #Thay doi phu hop voi cach dat servo
+            servo_door.max()   #Thay doi phu hop voi cach dat servo
             sleep(3)
             servo_door.mid()
             sleep(0.5)
@@ -54,7 +54,7 @@ def activate_DC(predict):
                     break
             print('Open door')
             sleep(1)
-            servo_door.min()   #Thay doi phu hop voi cach dat servo
+            servo_door.max()   #Thay doi phu hop voi cach dat servo
             sleep(3)
             servo_door.mid()
             sleep(0.5)
@@ -82,7 +82,7 @@ def activate_DC(predict):
                     break
             print('Open door')
             sleep(1)
-            servo_door.min()   #Thay doi phu hop voi cach dat servo
+            servo_door.max()   #Thay doi phu hop voi cach dat servo
             sleep(3)
             servo_door.mid()
             sleep(0.5)
@@ -117,7 +117,7 @@ def activate_DC(predict):
 
             print('Open door')
             sleep(1)
-            servo_door.min()   #Thay doi phu hop voi cach dat servo
+            servo_door.max()   #Thay doi phu hop voi cach dat servo
             sleep(3)
             servo_door.mid()
             sleep(0.5)
