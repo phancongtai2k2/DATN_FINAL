@@ -43,7 +43,7 @@ def detect_yolov8():
     img = cv2.imread(img_path)  # Doc hinh anh tu file 'saved_img.jpg'
     
     # Xac dinh toa do vung chua cai chai trong ong
-    x, y, w, h = 190, 100, 230, 400  # Cac gia tri nay la vi du, can dieu chinh theo thuc te
+    x, y, w, h = 220, 120, 200, 300  # Cac gia tri nay la vi du, can dieu chinh theo thuc te
     
     # Cat vung chua cai chai
     cropped_img = img[y:y+h, x:x+w]
@@ -99,3 +99,4 @@ def detect_yolov8():
     
     cv2.destroyAllWindows()  # Dong tat ca cac cua so OpenCV
     return class_number
+

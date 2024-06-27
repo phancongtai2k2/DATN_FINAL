@@ -23,12 +23,14 @@ def activate_DC(predict):
                 rg = read_ir_glass.read_sensor()
                 if(rg == 1):
                     rotate_motor.stop()
+                    sleep(2)
                     break
+            sleep(2)
             print('Open door')
             sleep(1)
-            servo_door.max()   #Thay doi phu hop voi cach dat servo
+            servo_door.min()   #Thay doi phu hop voi cach dat servo
             sleep(3)
-            servo_door.mid()
+            servo_door.max()
             sleep(0.5)
             print('Close door')
             
@@ -51,12 +53,14 @@ def activate_DC(predict):
                 rh = read_ir_hdpe.read_sensor()
                 if(rh == 1):
                     rotate_motor.stop()
+                    sleep(2)
                     break
+            sleep(2)
             print('Open door')
             sleep(1)
-            servo_door.max()   #Thay doi phu hop voi cach dat servo
+            servo_door.min()   #Thay doi phu hop voi cach dat servo
             sleep(3)
-            servo_door.mid()
+            servo_door.max()
             sleep(0.5)
             print('Close door')
 
@@ -79,12 +83,14 @@ def activate_DC(predict):
                 rm = read_ir_metal.read_sensor()
                 if(rm == 1):
                     rotate_motor.stop()
+                    sleep(2)
                     break
+            sleep(2)
             print('Open door')
             sleep(1)
-            servo_door.max()   #Thay doi phu hop voi cach dat servo
+            servo_door.min()   #Thay doi phu hop voi cach dat servo
             sleep(3)
-            servo_door.mid()
+            servo_door.max()
             sleep(0.5)
             print('Close door')
 
@@ -96,6 +102,7 @@ def activate_DC(predict):
                 rp = read_ir_pet.read_sensor()
                 if(rp == 1):
                     rotate_motor.stop()
+                    sleep(2)
                     break
         #pet
         elif(predict == 3):
@@ -112,17 +119,19 @@ def activate_DC(predict):
                         rp = read_ir_pet.read_sensor()
                         if(rp == 1):
                             rotate_motor.stop() 
+                            sleep(2)
                             break
                     break
 
+            sleep(2)
             print('Open door')
             sleep(1)
-            servo_door.max()   #Thay doi phu hop voi cach dat servo
+            servo_door.min()   #Thay doi phu hop voi cach dat servo
             sleep(3)
-            servo_door.mid()
+            servo_door.max()
             sleep(0.5)
             print('Close door')
                   
     finally:
-        GPIO.cleanup()            
-
+    #     GPIO.cleanup()        
+        print(" ")
